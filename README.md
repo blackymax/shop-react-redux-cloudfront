@@ -1,3 +1,7 @@
+### MANUAL DEPLOY LINK S3: http://maksim-charnou-first-aws-app.s3-website-eu-west-1.amazonaws.com/
+
+### CLOUDFRONT AUTO-DEPLOY LINK: https://d1alqr7b9jwg38.cloudfront.net/
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
@@ -69,8 +73,3 @@ Combination of `cloudfront:setup` and `cloudfront:build:deploy` commands with or
 ### `serverless:remove`
 
 Remove an entire stack configured in `serverless.yml` via CloudFormation.
-
-
-MANUAL DEPLOY LINK S3: http://maksim-charnou-first-aws-app.s3-website-eu-west-1.amazonaws.com/
-
-CLOUDFRONT AUTO-DEPLOY LINK: https://d1alqr7b9jwg38.cloudfront.net/
