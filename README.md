@@ -1,6 +1,6 @@
-### MANUAL DEPLOY LINK S3: http://maksim-charnou-first-aws-app.s3-website-eu-west-1.amazonaws.com/
+## MANUAL DEPLOY LINK S3: http://maksim-charnou-first-aws-app.s3-website-eu-west-1.amazonaws.com/
 
-### CLOUDFRONT AUTO-DEPLOY LINK: https://d1alqr7b9jwg38.cloudfront.net/
+## CLOUDFRONT AUTO-DEPLOY LINK: https://d1alqr7b9jwg38.cloudfront.net/
 
 # React-shop-cloudfront
 
