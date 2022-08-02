@@ -3,17 +3,15 @@ import API_PATHS from "~/constants/apiPaths";
 import { AvailableProduct } from "~/models/Product";
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import React from "react";
-import { products } from "~/mocks/data";
 
 export function useAvailableProducts() {
   return useQuery<AvailableProduct[], AxiosError>(
     "available-products",
     async () => {
-      // const res = await axios.get<AvailableProduct[]>(
-      //   `${API_PATHS.bff}/product/available`
-      // );
-      // return res.data;
-      return Promise.resolve(products as AvailableProduct[]);
+        const res = await axios.get<AvailableProduct[]>(
+            `${API_PATHS.bff}/products`
+        );
+        return res.data;
     }
   );
 }
