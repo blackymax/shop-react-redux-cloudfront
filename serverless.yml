@@ -36,7 +36,7 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3BucketName}
-        AccessControl: PublicRead
+        AccessControl: BucketOwnerFullControl
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: index.html
@@ -50,18 +50,34 @@ resources:
         Bucket:
           Ref: WebAppS3Bucket
         PolicyDocument:
-          Statement:
-            - Sid: "AllowCloudFrontAccessIdentity"
+         Statement:
+            - Action:
+                - 's3:GetObject'
               Effect: Allow
-              Action: s3:GetObject
-              Resource: arn:aws:s3:::${self:custom.s3BucketName}/*
-              Principal: "*"
-                # AWS:
-                #   Fn::Join:
-                #     - " "
-                #     - - "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity"
-                #       - !Ref OriginAccessIdentity
-
+              Principal:
+                AWS: !Join
+                  - ''
+                  - - 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity'
+                    - ' '
+                    - !Ref OriginAccessIdentity
+              Resource: !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref WebAppS3Bucket
+                  - /*
+            - Action:
+                - 's3:ListBucket'
+              Effect: Allow
+              Principal:
+                AWS: !Join
+                  - ''
+                  - - 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity'
+                    - ' '
+                    - !Ref OriginAccessIdentity
+              Resource: !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref WebAppS3Bucket
     OriginAccessIdentity:
       Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
       Properties:
