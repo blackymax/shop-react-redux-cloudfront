@@ -3,10 +3,12 @@ import { createRoot } from 'react-dom/client';
 import App from '~/components/App/App';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useNavigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { theme } from '~/theme';
+
+const navigate = useNavigate();
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,8 +16,23 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       retry: false,
       staleTime: Infinity,
+      onSuccess(data) {
+        if (
+          data.response.status === 404 ||
+          data.response.status === 403 ||
+          data.response.status === 401
+        ) {
+          navigate('*');
+        }
+      },
       onError(err) {
-        console.log(err);
+        if (
+          data.response.status === 404 ||
+          data.response.status === 403 ||
+          data.response.status === 401
+        ) {
+          navigate('*');
+        }
       },
     },
   },
