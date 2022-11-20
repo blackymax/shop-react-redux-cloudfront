@@ -71,7 +71,7 @@ export default function PageOrder() {
 
   if (isOrderLoading || isProductsLoading) return <p>loading...</p>;
 
-  const statusHistory = order?.status || [];
+  const statusHistory = 'In progress';
 
   // const lastStatusItem = statusHistory[statusHistory.length - 1];
 
@@ -88,7 +88,7 @@ export default function PageOrder() {
       <Typography variant="h6">Change status:</Typography>
       <Box py={2}>
         <Formik
-          initialValues={{ status: statusHistory, comment: '' }}
+          initialValues={{ status: statusHistory as any, comment: '' }}
           enableReinitialize
           onSubmit={(values) =>
             updateOrderStatus(
@@ -156,7 +156,7 @@ export default function PageOrder() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {statusHistory.map((statusHistoryItem) => (
+            {/* {statusHistory.map((statusHistoryItem) => (
               <TableRow key={order.id}>
                 <TableCell component="th" scope="row">
                   {statusHistoryItem.status.toUpperCase()}
@@ -166,7 +166,7 @@ export default function PageOrder() {
                 </TableCell>
                 <TableCell align="right">{statusHistoryItem.comment}</TableCell>
               </TableRow>
-            ))}
+            ))} */}
           </TableBody>
         </Table>
       </TableContainer>
