@@ -1,8 +1,8 @@
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import CartItems from "~/components/CartItems/CartItems";
-import { FormikValues } from "formik";
-import { CartItem } from "~/models/CartItem";
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import CartItems from '~/components/CartItems/CartItems';
+import { FormikValues } from 'formik';
+import { CartItem } from '~/models/CartItem';
 
 type ReviewOrderProps = {
   address: FormikValues;
@@ -10,6 +10,7 @@ type ReviewOrderProps = {
 };
 
 export default function ReviewOrder({ address, items }: ReviewOrderProps) {
+  console.log('REVIEW ORDER', items);
   return (
     <>
       <Typography variant="h6" gutterBottom>
