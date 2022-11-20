@@ -53,6 +53,7 @@ export default function PageOrder() {
     { data: order, isLoading: isOrderLoading },
     { data: products, isLoading: isProductsLoading },
   ] = results;
+  console.log('RESULTS', results);
   const { mutateAsync: updateOrderStatus } = useUpdateOrderStatus();
   const invalidateOrder = useInvalidateOrder();
   const cartItems: CartItem[] = React.useMemo(() => {
@@ -70,9 +71,9 @@ export default function PageOrder() {
 
   if (isOrderLoading || isProductsLoading) return <p>loading...</p>;
 
-  const statusHistory = order?.statusHistory || [];
+  const statusHistory = order?.status || [];
 
-  const lastStatusItem = statusHistory[statusHistory.length - 1];
+  // const lastStatusItem = statusHistory[statusHistory.length - 1];
 
   return order ? (
     <PaperLayout>
@@ -82,12 +83,12 @@ export default function PageOrder() {
       <ReviewOrder address={order.address} items={cartItems} />
       <Typography variant="h6">Status:</Typography>
       <Typography variant="h6" color="primary">
-        {lastStatusItem?.status.toUpperCase()}
+        {statusHistory?.toUpperCase()}
       </Typography>
       <Typography variant="h6">Change status:</Typography>
       <Box py={2}>
         <Formik
-          initialValues={{ status: lastStatusItem.status, comment: '' }}
+          initialValues={{ status: statusHistory, comment: '' }}
           enableReinitialize
           onSubmit={(values) =>
             updateOrderStatus(

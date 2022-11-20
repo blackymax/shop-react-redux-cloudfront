@@ -7,6 +7,7 @@ type ReviewCartProps = {
 };
 
 export default function ReviewCart({ items }: ReviewCartProps) {
+  console.log('REVIEW CART ITEMS', items);
   return (
     <>
       <Typography variant="h6" gutterBottom>

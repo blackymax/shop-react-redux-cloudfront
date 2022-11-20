@@ -10,6 +10,7 @@ type ReviewOrderProps = {
 };
 
 export default function ReviewOrder({ address, items }: ReviewOrderProps) {
+  console.log('REVIEW ORDER', items);
   return (
     <>
       <Typography variant="h6" gutterBottom>

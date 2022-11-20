@@ -12,7 +12,8 @@ type CartItemsProps = {
 };
 
 export default function CartItems({ items, isEditable }: CartItemsProps) {
-  const totalPrice: number = items.reduce(
+  console.log('ITEMS', items);
+  const totalPrice: number = items?.reduce(
     (total, item) => item.count * item.product.price + total,
     0
   );
@@ -20,7 +21,7 @@ export default function CartItems({ items, isEditable }: CartItemsProps) {
   return (
     <>
       <List disablePadding>
-        {items.map((cartItem: CartItem) => (
+        {items?.map((cartItem: CartItem) => (
           <ListItem
             sx={{ padding: (theme) => theme.spacing(1, 0) }}
             key={cartItem.product.id}
